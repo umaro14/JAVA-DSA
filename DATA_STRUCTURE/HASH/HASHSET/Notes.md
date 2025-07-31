@@ -42,7 +42,7 @@ Checking membership (e.g., tracking visited nodes in a graph).
 Mathematical set operations (union, intersection, difference).
 
 
-# HashSet vs. Other Sets
+# HashSet vs. Other Setss
 # Set Type	          Ordering	                        Allows null	      Thread-Safe
 HashSet	              Unordered	                          Yes	              ❌ No
 LinkedHashSet	      Insertion-order	                  Yes	              ❌ No
