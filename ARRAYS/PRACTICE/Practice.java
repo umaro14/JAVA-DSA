@@ -8,15 +8,19 @@ class Solution {
    public int[] TopKFrequent(int[] nums, int k){
 
         //frequency map
-        HashMap<Integer,Integer> count = new HashMap<>();
+        HashMap<Integer,Integer> countMap = new HashMap<>();
+
         for(int num : nums){
-            count.put(num, count.getOrDefault(num, 0) + 1);
+            if(countMap.containsKey(num)){
+                countMap.put(num, countMap.get(num) + 1);
+            } 
+            countMap.put(num, 1);
         }
 
         //MinHeap based on Frequency
         PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
 
-        for (Map.Entry<Integer, Integer> entry : count.entrySet()){
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()){             //
             heap.offer(entry);
             if(heap.size() > k) heap.poll();
         }
@@ -35,7 +39,7 @@ class Solution {
 
 public class Practice {
     public static void main(String[] args) {
-        int[] nums = {1,1,1,2,2,3,3,3,3,};
+        int[] nums = {1,2,4,5,5,5,7,7,7};
         int k = 2;
         Solution solution = new Solution();
         int[] result = solution.TopKFrequent(nums, k);
