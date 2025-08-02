@@ -57,3 +57,24 @@
     -->Storing configurations (key-value settings).
 
 
+# Why HashMap is Not Thread-Safe in Java ?
+HashMap is not thread-safe because it lacks internal synchronization mechanisms, which can lead to data corruption, infinite loops, and race conditions when accessed by multiple threads simultaneously. Here's why:
+
+1. Race Conditions During put() Operations
+Problem:
+When two threads call put() at the same time:
+
+They might compute the same bucket index for different keys.
+
+One thread’s update could be overwritten by another.
+
+This leads to lost data.
+
+# Map<String, Integer> map = new HashMap<>();
+
+# Thread t1 = () -> map.put("A", 1);  
+# Thread t2 = () -> map.put("B", 2);  
+
+# t1.start();  
+# t2.start();  
+// Possible outcome: Only one entry ("A" or "B") remains.
