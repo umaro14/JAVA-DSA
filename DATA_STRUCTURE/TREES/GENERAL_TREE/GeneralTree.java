@@ -63,4 +63,63 @@ public class GeneralTree<T> {
             queue.addAll(current.children);                //These children will be visited in the next rounds of the loop.
         }
     }
+
+    // Find node with given data (DFS search)
+    public TreeNode<T> findNode(TreeNode<T> node, T data){
+        if(node == null) return null;
+        if(node.data.equals(data)) return node;
+
+        for(TreeNode<T> child : node.children){
+            TreeNode<T> found = findNode(child, data);
+            if(found != null) return found;
+        }
+
+        return null;
+    }
+
+    // Calculate tree height
+    public int getHeight(TreeNode<T> node) {
+        if (node == null) return 0;
+        
+        int maxHeight = 0;
+        for (TreeNode<T> child : node.children) {
+            int childHeight = getHeight(child);
+            if (childHeight > maxHeight) {
+                maxHeight = childHeight;
+            }
+        }
+        
+        return maxHeight + 1;
+    }
+
+
+    public static void main(String[] args) {
+        GeneralTree<String> tree = new GeneralTree<>();
+        
+        // Build the tree
+        tree.addRoot("A");
+        TreeNode<String> root = tree.findNode(tree.root, "A");
+        
+        tree.addChild(root, "B");
+        tree.addChild(root, "C");
+        tree.addChild(root, "D");
+        
+        TreeNode<String> nodeB = tree.findNode(root, "B");
+        tree.addChild(nodeB, "E");
+        tree.addChild(nodeB, "F");
+        
+        TreeNode<String> nodeD = tree.findNode(root, "D");
+        tree.addChild(nodeD, "G");
+        
+        // Traversals
+        System.out.println("DFS Traversal:");
+        tree.traverseDFS(tree.root); // A B E F C D G
+        
+        System.out.println("\nBFS Traversal:");
+        tree.traverseBFS(); // A B C D E F G
+        
+        // Height calculation
+        System.out.println("\nTree height: " + tree.getHeight(tree.root)); // 3
+    }
+
 }
