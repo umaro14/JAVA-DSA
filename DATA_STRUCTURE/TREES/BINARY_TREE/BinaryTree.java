@@ -16,7 +16,7 @@ class TreeNode{
 }
 
 
-
+//UMAR BALDE-14
 public class BinaryTree {
     TreeNode root;
 
@@ -29,6 +29,7 @@ public class BinaryTree {
     }
     
     // In-order traversal (Left -> Root -> Right)
+    //👉 The algorithm always goes to the leftmost node first, ignoring everything else (even the right child of the root) until it can’t go left anymore.
     public void inOrder(TreeNode node){
         if( node == null ) return;
         inOrder(node.left);

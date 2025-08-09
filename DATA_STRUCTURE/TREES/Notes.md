@@ -105,7 +105,6 @@ No duplicates (usually)
  / \    / \
 20 40  60 80
 
-
 # 🌲 What is an AVL Tree?
 AVL Tree is a Binary Search Tree that keeps itself balanced after every insertion or deletion.
 
